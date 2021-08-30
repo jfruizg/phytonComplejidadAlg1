@@ -10,7 +10,7 @@ class Controller:
 
     Vista.mostrarDatos(
         "Bienvenido al oirdenamiento full" + "\n" + "Ordenamiento burbuja -> [1]" + "\n"
-        + "Ordenamiento por Seleccion -> [2]")
+        + "Ordenamiento por Seleccion -> [2]"+"\n"+"Ordenamiento Radix -> [3]")
     datoMenu = Vista.recibirDatos("")
 
     if(datoMenu == 1):
@@ -59,15 +59,15 @@ class Controller:
             cantidadDatos = Vista.recibirDatos("Escribir el dato *N* o la cantidad de datos a organizar" + "\n")
             for i in range(0, cantidadDatos):
                 listaNumero.append(random.randrange(0, cantidadDatos))
-            Model.modelo.ordenamientoSeleccion(listaNumero)
-            Vista.mostrarDatos(listaNumero)
+            print(Model.modelo.ordenamientoRadix(listaNumero))
+
         else:
             catidadDatos = Vista.recibirDatos("Escribir el dato *N* o la cantidad de datos a organizar" + "\n")
             for i in range(0, catidadDatos):
                 num = Vista.recibirDatos("Dato (" + str(i + 1) + ") = ")
                 listaNumero.append(num)
-            Model.modelo.ordenamientoSeleccion(listaNumero)
-            Vista.mostrarDatos(listaNumero)
+            (Model.modelo.ordenamientoRadix(listaNumero))
+            print(listaNumero)
 
 
 
