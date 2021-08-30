@@ -1,6 +1,5 @@
-def recibirDatos():
-    resultado = input("Escribir dato a recibir")
-    return resultado
-
+def recibirDatos(mensaje):
+        resultado = int(input(mensaje))
+        return resultado
 def mostrarDatos(valor):
-    print(valor)
+        print(valor)

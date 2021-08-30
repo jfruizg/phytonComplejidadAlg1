@@ -1,3 +1,3 @@
-from Controller import controller
+from Controller import Controller
 
-controller = controller
+controller = Controller()
