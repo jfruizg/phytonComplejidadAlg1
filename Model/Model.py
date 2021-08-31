@@ -1,3 +1,6 @@
+from heapq import merge
+
+
 class modelo:
 
     def ordenamientoBurbuja(unaLista):
@@ -32,7 +35,7 @@ class modelo:
                 listaDatos[i] = "0" + listaDatos[i]
 
         for j in range(n, -1, -1, -1):
-            grupos = [[]for i in range(10)]
+            grupos = [[] for i in range(10)]
 
             for i in range(len(listaDatos)):
                 grupos[int(lista[i][j])].append(lista[i])
@@ -41,3 +44,38 @@ class modelo:
             for g in grupos:
                 lista += g
         return [int(i) for i in lista]
+
+    """
+    Merge Sort
+    """
+
+
+def ordenamientoMerge(lista):
+    if len(lista) < 2:
+        return lista
+
+    # De lo contrario, se divide en 2
+    else:
+        middle = len(lista) // 2
+        right = ordenamientoMerge(lista[:middle])
+        left = ordenamientoMerge(lista[middle:])
+        return merge(right, left)
+
+
+# Función merge
+def merge(lista1, lista2):
+    i, j = 0, 0
+    result = []
+
+    while (i < len(lista1) and j < len(lista2)):
+        if (lista1[i] < lista2[j]):
+            result.append(lista1[i])
+            i += 1
+        else:
+            result.append(lista2[j])
+            j += 1
+
+    result += lista1[i:]
+    result += lista2[j:]
+
+    return result
