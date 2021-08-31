@@ -37,9 +37,6 @@ class Controller:
                 Model.modelo.ordenamientoBurbuja(listaNumero)
                 Vista.vista.mostrarDatos(listaNumero)
                 listaNumero.clear()
-
-
-
         elif (datoMenu == 2):
             Vista.vista.mostrarDatos("Ordenamiento Seleccion")
             Vista.vista.mostrarDatos("Datos aleatorios -> [1]" + "\n" + "Datos ingresados por ususario -> [2]")
@@ -64,14 +61,13 @@ class Controller:
         elif (datoMenu == 3):
             Vista.vista.mostrarDatos("Ordenamiento Radix")
             Vista.vista.mostrarDatos("Datos aleatorios -> [1]" + "\n" + "Datos ingresados por ususario -> [2]")
-            datoMenuRadix = Vista.recibirDatos("")
-            listaNumero = []
+            datoMenuRadix = Vista.vista.recibirDatos("")
             if (datoMenuRadix == 1):
                 cantidadDatos = Vista.vista.recibirDatos(
                     "Escribir el dato *N* o la cantidad de datos a organizar" + "\n")
                 for i in range(0, cantidadDatos):
                     listaNumero.append(random.randrange(0, cantidadDatos))
-                print(Model.modelo.ordenamientoRadix(listaNumero))
+                print(Model.modelo.radixSort(listaNumero))
                 listaNumero.clear()
             else:
                 catidadDatos = Vista.vista.recibirDatos(
@@ -81,18 +77,16 @@ class Controller:
                     listaNumero.append(num)
                 (Model.modelo.ordenamientoRadix(listaNumero))
                 print(listaNumero)
-                listaNumero.clear()
         elif (datoMenu == 4):
             Vista.vista.mostrarDatos("Ordenamiento Quicksort")
             Vista.vista.mostrarDatos("Datos aleatorios -> [1]" + "\n" + "Datos ingresados por ususario -> [2]")
-            datoMenuQuick = Vista.recibirDatos("")
-            listaNumero = []
+            datoMenuQuick = Vista.vista.recibirDatos("")
             if (datoMenuQuick == 1):
                 cantidadDatos = Vista.vista.recibirDatos(
                     "Escribir el dato *N* o la cantidad de datos a organizar" + "\n")
                 for i in range(0, cantidadDatos):
                     listaNumero.append(random.randrange(0, cantidadDatos))
-                print(Model.modelo.ordenamientoRadix(listaNumero))
+                print(Model.ordenamientoSort(listaNumero))
                 listaNumero.clear()
             else:
                 catidadDatos = Vista.vista.recibirDatos(
@@ -101,7 +95,7 @@ class Controller:
                     num = Vista.vista.recibirDatos("Dato (" + str(i + 1) + ") = ")
                     listaNumero.append(num)
                 (Model.modelo.ordenamientoRadix(listaNumero))
-                print(listaNumero)
+                print(Model.ordenamientoSort(listaNumero))
                 listaNumero.clear()
 
 
@@ -109,7 +103,6 @@ class Controller:
             Vista.vista.mostrarDatos("Ordenamiento MergeSort")
             Vista.vista.mostrarDatos("Datos aleatorios -> [1]" + "\n" + "Datos ingresados por ususario -> [2]")
             datoMenuMerge = Vista.vista.recibirDatos("")
-            listaNumero = []
             if (datoMenuMerge == 1):
                 cantidadDatos = Vista.vista.recibirDatos(
                     "Escribir el dato *N* o la cantidad de datos a organizar" + "\n")

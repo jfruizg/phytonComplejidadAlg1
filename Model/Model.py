@@ -24,45 +24,75 @@ class modelo:
                 listaDatos[i] = listaDatos[minimo]
                 listaDatos[minimo] = aux
 
-    def ordenamientoRadix(listaDatos):
-        n = 0;
-        for e in listaDatos:
-            if len(e) > n:
-                n = len(e)
 
-        for i in range(0, len(listaDatos)):
-            while len(listaDatos[i]) < n:
-                listaDatos[i] = "0" + listaDatos[i]
 
-        for j in range(n, -1, -1, -1):
-            grupos = [[] for i in range(10)]
+    def countingSortForRadix(inputArray, placeValue):
+        countArray = [0] * 10
+        inputSize = len(inputArray)
 
-            for i in range(len(listaDatos)):
-                grupos[int(lista[i][j])].append(lista[i])
+        for i in range(inputSize):
+            placeElement = (inputArray[i] // placeValue) % 10
+            countArray[placeElement] += 1
 
-            lista = []
-            for g in grupos:
-                lista += g
-        return [int(i) for i in lista]
+        for i in range(1, 10):
+            countArray[i] += countArray[i - 1]
 
-    """
-    Merge Sort
-    """
+        # Reconstructing the output array
+        outputArray = [0] * inputSize
+        i = inputSize - 1
+        while i >= 0:
+            currentEl = inputArray[i]
+            placeElement = (inputArray[i] // placeValue) % 10
+            countArray[placeElement] -= 1
+            newPosition = countArray[placeElement]
+            outputArray[newPosition] = currentEl
+            i -= 1
+
+        return outputArray
+
+    def radixSort(listaDato):
+        maxEl = max(listaDato)
+        D = 1
+        while maxEl > 0:
+            maxEl /= 10
+            D += 1
+        placeVal = 1
+        outputArray = listaDato
+        while D > 0:
+            outputArray = modelo.countingSortForRadix(outputArray, placeVal)
+            placeVal *= 10
+            D -= 1
+
+        return outputArray
+
+
+def ordenamientoSort(lista):
+    izquierda = []
+    centro = []
+    derecha = []
+    if len(lista) > 1:
+        pivote = lista[0]
+        for i in lista:
+            if i < pivote:
+                izquierda.append(i)
+            elif i == pivote:
+                centro.append(i)
+            elif i > pivote:
+                derecha.append(i)
+        return ordenamientoSort(izquierda) + centro + ordenamientoSort(derecha)
+    else:
+        return lista
 
 
 def ordenamientoMerge(lista):
     if len(lista) < 2:
         return lista
-
-    # De lo contrario, se divide en 2
     else:
         middle = len(lista) // 2
         right = ordenamientoMerge(lista[:middle])
         left = ordenamientoMerge(lista[middle:])
         return merge(right, left)
 
-
-# Función merge
 def merge(lista1, lista2):
     i, j = 0, 0
     result = []
@@ -79,3 +109,5 @@ def merge(lista1, lista2):
     result += lista2[j:]
 
     return result
+
+
